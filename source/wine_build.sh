@@ -8,7 +8,6 @@ then
     if [ -d wine/dlls/$1 ]
     then
         cd wine
-        make clean
         
         if [ $2 -eq 64 ]
         then
@@ -27,8 +26,12 @@ then
             # since it won't find a wineserver binary
             make test 2>/dev/null
             
-            rm -rf $SOURCE_PATH/../output/$1_x$2 2>/dev/null
-            cp -r $BUILD_DIR $SOURCE_PATH/../output/$1_x$2
+            rm -rf $SOURCE_PATH/../output/$1_test_x$2.exe 2>/dev/null
+            cp $BUILD_DIR/$1_test.exe $SOURCE_PATH/../output/$1_test_x$2.exe
+
+            cd $SOURCE_PATH/wine
+            make clean
+            cd -
 
             cd $SOURCE_PATH
             # uncomment if you want to remove the source wine dir
