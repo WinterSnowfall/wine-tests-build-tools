@@ -22,7 +22,11 @@ RUN echo -e "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist" >> /etc/pacman.co
     fontconfig \
     pkgconf \
     mesa \
-    sdl2
+    sdl2 \
+    alsa-lib \
+    libpulse \
+    gstreamer \
+    gst-plugins-base-libs
 RUN useradd -m builder \
     && chmod 777 /home/builder
     
