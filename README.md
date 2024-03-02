@@ -26,7 +26,7 @@ And also git, in case that wasn't already painfully obvious.
   
     `./wine_build_runner.sh <lib_name> <x86_bits>`
   
-    Where `<lib_name>` can be any Wine library that has a dedicated folder under the `dlls` source directory. You can optionally also specify a `<x86_bits>` of `64`, otherwise it will default to `32`.
+    Where `<lib_name>` can be any Wine library that has a dedicated folder under the `dlls` source directory. You can optionally also specify a `<x86_bits>` of `32`, otherwise it will default to `64`.
   
     After the script completes and compilation is successful you can find the test binaries and artifacts in the `output` folder.
 

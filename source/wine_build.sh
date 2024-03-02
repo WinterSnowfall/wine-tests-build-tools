@@ -20,17 +20,23 @@ then
             ./configure --without-freetype
         fi
 
-        cd dlls/$1/tests
-        # will fail post-compilation, during test run,
-        # since it won't find a wineserver binary
-        make test 2>/dev/null
-        
-        rm -rf $SOURCE_PATH/../output/$1_x$2 2>/dev/null
-        cp -r $BUILD_DIR $SOURCE_PATH/../output/$1_x$2
+        if [ -d dlls/$1/tests ]
+        then
+            cd dlls/$1/tests
+            # will fail post-compilation, during test run,
+            # since it won't find a wineserver binary
+            make test 2>/dev/null
+            
+            rm -rf $SOURCE_PATH/../output/$1_x$2 2>/dev/null
+            cp -r $BUILD_DIR $SOURCE_PATH/../output/$1_x$2
 
-        cd $SOURCE_PATH
-        # uncomment if you want to remove the source wine dir
-        #rm -rf wine
+            cd $SOURCE_PATH
+            # uncomment if you want to remove the source wine dir
+            #rm -rf wine
+        else
+            echo "Invalid parameters: specified target lib does not contain tests!"
+            exit 3
+        fi
     else
         echo "Invalid parameters: specified target lib does not exist!"
         exit 2
