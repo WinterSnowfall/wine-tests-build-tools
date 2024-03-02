@@ -3,7 +3,8 @@
 if [ $# -ge 2 ]
 then
     SOURCE_PATH="$PWD"
-    git clone https://github.com/wine-mirror/wine.git
+    # speed up things by doing a shallow clone
+    git clone --depth 1 https://github.com/wine-mirror/wine.git
 
     if [ -d wine/dlls/$1 ]
     then
