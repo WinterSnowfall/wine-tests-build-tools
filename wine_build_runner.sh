@@ -30,7 +30,7 @@ then
                -e BUILD_X86_BITS=$BUILD_X86_BITS \
                -v $SOURCE_PATH:/home/builder/source \
                -v $OUTPUT_PATH:/home/builder/output \
-               wine-builder
+               wine-test-builder
 else
     echo "Invalid parameters: please specify the target lib!"
     exit 1
