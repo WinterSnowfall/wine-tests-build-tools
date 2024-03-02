@@ -31,9 +31,7 @@ then
 
             cd $SOURCE_PATH/wine
             make clean
-            cd -
-
-            cd $SOURCE_PATH
+            cd ..
             # uncomment if you want to remove the source wine dir
             #rm -rf wine
         else
