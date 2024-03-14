@@ -30,8 +30,8 @@ then
             # since it won't find a wineserver binary
             make test 2>/dev/null
             
-            rm -f "$SOURCE_PATH/../output/$TEST_LIB"_test_x"$BUILD_X86_BITS".exe 2>/dev/null
-            cp "$BUILD_DIR/$TEST_LIB"_test.exe "$SOURCE_PATH/../output/$TEST_LIB"_test_x"$BUILD_X86_BITS".exe
+            rm -f "$SOURCE_PATH/../output/$TEST_LIB"_test_x$BUILD_X86_BITS.exe 2>/dev/null
+            cp "$BUILD_DIR/$TEST_LIB"_test.exe "$SOURCE_PATH/../output/$TEST_LIB"_test_x$BUILD_X86_BITS.exe
 
             cd "$SOURCE_PATH/wine"
             make clean
