@@ -3,14 +3,17 @@
 if [ $# -ge 2 ]
 then
     SOURCE_PATH="$PWD"
+    TEST_LIB="$1"
+    BUILD_X86_BITS=$2
+
     # speed up things by doing a shallow clone
     git clone --depth 1 https://github.com/wine-mirror/wine.git
 
-    if [ -d wine/dlls/$1 ]
+    if [ -d "wine/dlls/$TEST_LIB" ]
     then
         cd wine
         
-        if [ $2 -eq 64 ]
+        if [ $BUILD_X86_BITS -eq 64 ]
         then
             BUILD_DIR="x86_64-windows"
             ./configure --enable-win64
@@ -20,17 +23,17 @@ then
             ./configure --without-freetype
         fi
 
-        if [ -d dlls/$1/tests ]
+        if [ -d "dlls/$TEST_LIB/tests" ]
         then
-            cd dlls/$1/tests
+            cd "dlls/$TEST_LIB/tests"
             # will fail post-compilation, during test run,
             # since it won't find a wineserver binary
             make test 2>/dev/null
             
-            rm -rf $SOURCE_PATH/../output/$1_test_x$2.exe 2>/dev/null
-            cp $BUILD_DIR/$1_test.exe $SOURCE_PATH/../output/$1_test_x$2.exe
+            rm -f "$SOURCE_PATH/../output/$TEST_LIB_test_x$BUILD_X86_BITS.exe" 2>/dev/null
+            cp "$BUILD_DIR/$TEST_LIB_test.exe" "$SOURCE_PATH/../output/$TEST_LIB_test_x$BUILD_X86_BITS.exe"
 
-            cd $SOURCE_PATH/wine
+            cd "$SOURCE_PATH/wine"
             make clean
             cd ..
             # uncomment if you want to remove the source wine dir
