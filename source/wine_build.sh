@@ -7,7 +7,7 @@ then
     BUILD_X86_BITS=$2
 
     # speed up things by doing a shallow clone
-    git clone --depth 1 https://github.com/wine-mirror/wine.git
+    git clone --depth 1 --recurse-submodules https://github.com/wine-mirror/wine.git wine
 
     if [ -d "wine/dlls/$TEST_LIB" ]
     then
