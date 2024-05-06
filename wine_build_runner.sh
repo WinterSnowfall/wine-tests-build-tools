@@ -1,5 +1,6 @@
 #!/bin/bash
 
+BUILD_MODE="tests"
 OUTPUT_PATH="$PWD/output"
 SOURCE_PATH="$PWD/source"
 # update if you care about file timestamps
@@ -7,7 +8,7 @@ TIMEZONE="Etc/UTC"
 
 if [ $# -ge 1 ]
 then
-    TEST_LIB="$1"
+    TARGET_LIB="$1"
 
     if [ $# -ge 2 ]
     then
@@ -28,7 +29,8 @@ then
                --name wine-builder \
                -h wine-builder \
                -e TZ="$TIMEZONE" \
-               -e TEST_LIB="$TEST_LIB" \
+               -e BUILD_MODE="$BUILD_MODE" \
+               -e TARGET_LIB="$TARGET_LIB" \
                -e BUILD_X86_BITS=$BUILD_X86_BITS \
                -v "$SOURCE_PATH":/home/builder/source \
                -v "$OUTPUT_PATH":/home/builder/output \

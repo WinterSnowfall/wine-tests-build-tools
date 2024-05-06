@@ -34,8 +34,9 @@ USER builder
 
 WORKDIR /home/builder/source
 
-ENV TEST_LIB="d3d8"
+ENV BUILD_MODE="tests"
+ENV TARGET_LIB="d3d8"
 ENV BUILD_X86_BITS=32
 
-CMD ["bash", "-c", "/home/builder/source/wine_build.sh \"$TEST_LIB\" $BUILD_X86_BITS"]
+CMD ["bash", "-c", "/home/builder/source/wine_build.sh \"$TARGET_LIB\" $BUILD_X86_BITS"]
 
