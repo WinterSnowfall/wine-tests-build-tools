@@ -19,17 +19,21 @@ then
     then
         cd wine
 
-        mkdir "$SOURCE_PATH/../output/x$BUILD_X86_BITS" 2>/dev/null
-
         if [ $BUILD_X86_BITS -eq 64 ]
         then
             BUILD_DIR="x86_64-windows"
             ./configure --enable-win64
-        else
+        elif [ $BUILD_X86_BITS -eq 32 ]
+        then
             BUILD_DIR="i386-windows"
             # largely enough for minimal builds on x86-64 multi-lib
             ./configure --without-freetype
+        else
+            echo "Invalid parameters: unsupported x86 bit value of $BUILD_X86_BITS!"
+            exit 3
         fi
+
+        mkdir "$SOURCE_PATH/../output/x$BUILD_X86_BITS" 2>/dev/null
 
         # build the actual wine lib by default
         if [ "$BUILD_MODE" = "libs" ]
