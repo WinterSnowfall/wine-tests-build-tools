@@ -12,8 +12,15 @@ then
     TARGET_LIB="$1"
     BUILD_X86_BITS=$2
 
-    # speed up things by doing a shallow clone
-    git clone --depth 1 --recurse-submodules https://github.com/wine-mirror/wine.git wine
+    if [ -d "$SOURCE_PATH/wine" ]
+    then
+        cd wine
+        git pull --depth 1 --recurse-submodules
+        cd ..
+    else
+        # speed up things by doing a shallow clone
+        git clone --depth 1 --recurse-submodules https://github.com/wine-mirror/wine.git wine
+    fi
 
     if [ -d "wine/dlls/$TARGET_LIB" ]
     then
