@@ -32,11 +32,5 @@ Docker and dependencies (containerd, runc etc.), in whatever form it comes with 
 
 As mentioned above, it really isn't what this builder is trying to achieve, namely to provide a quick and easy way to get Wine tests compiled.
 
-That being said, you can set `BUILD_MODE="libs"` in the `wine_build_runner.sh` script to compile individual Wine libraries rather than tests, however note that especially with 32-bit libraries this can lead to dlls lacking certain features, mostly because of limitations with multi-lib builds that I haven't gone out of my way to address (more details on that [here](https://wiki.winehq.org/Building_Wine#Cross-Compiling)), so your milage may vary.
-
-If what you're looking for is to quickly test a patch on some Wine dll, then perhaps `wine-test-build-tools` will be sufficient, though that largely depends on the library in question.
-
-> The warning has been given. Their fate is now their own.
->
-> -- <cite>Medivh, The Last Guardian</cite>
+That being said, you can set `BUILD_MODE="libs"` in the `wine_build_runner.sh` script to compile individual Wine libraries rather than tests.
 
